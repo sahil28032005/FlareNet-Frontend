@@ -1,0 +1,437 @@
+/* ProjectsPage.css */
+.projects-page {
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects-container {
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.authorize-button {
+  background-color: #24292f;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.authorize-button:hover {
+  background-color: #333;
+}
+
+.github-icon {
+  margin-right: 10px;
+}
+
+.user-info-card, .repo-card, .project-card {
+  /* background-color: #1e1e1e; */
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.project-deploy-button, .create-button, .back-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.project-deploy-button:hover, .create-button:hover, .back-button:hover {
+  background-color: #45a049;
+}
+
+.form-label {
+  color: #bbb;
+}
+
+.input-field, .textarea-field {
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.expand-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.expand-button:hover {
+  background-color: #0056b3;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  margin-top: 50px;
+}
+/* Make sure the canvas takes the full screen width and height */
+#animated-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Keep it behind components */
+  pointer-events: none; /* Allow interaction with components above the canvas */
+}
+
+.projects-page {
+  position: relative;
+  overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+.canvas-container {
+  position: fixed; /* Fixed to ensure it stays in the background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  z-index: -1; /* Place it behind the content */
+}
+#animated-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Keep it visible above the page background */
+  pointer-events: none; /* Prevent it from blocking interactions */
+}
+
+.projects-page {
+  position: relative;
+  z-index: 1; /* Ensure content is above the canvas */
+}
+.user-repos-section {
+  padding: 40px 20px;
+  background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.subtitle {
+  color: #f8f8f8;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.user-repos-section {
+  padding: 40px 20px;
+  background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.subtitle {
+  color: #f8f8f8;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.repo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.modern-card {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  border-radius: 20px;
+  overflow: hidden;
+  transform-origin: center;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: slideUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.modern-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+}
+
+.repo-card-header h3 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.repo-card-content {
+  padding: 16px;
+  font-size: 1rem;
+  color: #b0b0b0;
+}
+
+.repo-description {
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.repo-link {
+  color: #4fc3f7;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(79, 195, 247, 0.8);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.repo-link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+}
+
+.modern-button {
+  margin: 30px auto 0;
+  display: block;
+  background: linear-gradient(90deg, #4fc3f7, #1976d2);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.modern-button:hover {
+  background: linear-gradient(90deg, #1976d2, #4fc3f7);
+  box-shadow: 0 5px 15px rgba(79, 195, 247, 0.6);
+  transform: translateY(-3px);
+}
+
+@keyframes slideUp {
+  0% {
+      transform: translateY(20px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+/* Scroll Animation */
+.modern-scroll .modern-card {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+}
+
+.modern-scroll .modern-card.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Updated User Information Section */
+.user-info-card {
+  background: #121212;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  /* animation: fadeInUp 0.5s ease-in-out; */
+  padding: 20px;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.user-info-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
+  animation: pulseGlow 2s infinite;
+}
+
+.user-details {
+  margin-left: 20px;
+}
+
+.user-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.user-login {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.user-bio {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 10px 0;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.repo-card-footer{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  
+}
+.repo-card-footer a{
+  margin: 10px;
+}
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes orb-float {
+  0%, 100% { 
+      transform: translate(0, 0) rotate(0deg); 
+      opacity: 0.5;
+  }
+  50% { 
+      transform: translate(-15px, -15px) rotate(5deg); 
+      opacity: 0.7;
+  }
+}
+
+.animate-orb-float {
+  animation: orb-float 12s ease-in-out infinite;
+}
+
+.animate-orb-float-delayed {
+  animation: orb-float 12s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}

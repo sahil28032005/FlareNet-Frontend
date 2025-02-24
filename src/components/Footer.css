@@ -1,0 +1,86 @@
+/* Footer Container Styling */
+.footer {
+    background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 3rem 2rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Footer Content Layout */
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .footer-content {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Footer Titles */
+  .footer-title {
+    font-size: 1.25rem;
+    color: #f9d423;
+    text-shadow: 0 0 12px rgba(255, 223, 0, 0.8);
+    margin-bottom: 1rem;
+  }
+  
+  /* Footer Text */
+  .footer-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Footer Links */
+  .footer-link {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .footer-link:hover {
+    color: #f9d423;
+  }
+  
+  /* Social Links */
+  .footer-link i {
+    margin-right: 0.5rem;
+  }
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  
+  /* Add hover glow effect to links */
+  a:hover {
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  }
+  
+  /* Gradient text animation */
+  .bg-gradient-to-r {
+    background-size: 200% auto;
+    animation: shine 2s linear infinite;
+  }
+  
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid #2d2d2d;
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+  

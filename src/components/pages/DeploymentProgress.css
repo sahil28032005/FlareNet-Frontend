@@ -1,0 +1,421 @@
+/* DeploymentProgress.css */
+
+.deploy-progress-container {
+  background-color: #1e1e2f;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 60px;
+}
+
+.progress-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.progress-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.analytics-section {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stats-card {
+  background-color: #2c2c3a;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+.log-area {
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #282830;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: monospace;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.log-line {
+  margin-bottom: 10px;
+}
+
+.log-level-success {
+  color: #00ff00;
+}
+
+.log-level-error {
+  color: #ff4d4d;
+}
+
+.progress-bar {
+  background-color: #333344;
+  border-radius: 12px;
+  height: 20px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background-color: #00ff00;
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-cancel {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.btn-dashboard,
+.btn-home {
+  background-color: #007bff;
+  color: white;
+}
+
+.advertisement-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.advertisement-card {
+  background-color: #2c2c3a;
+  border-radius: 12px;
+  padding: 20px;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advertisement-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.ad-image {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.ad-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #00ffc3;
+}
+
+.ad-description {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.floating-left {
+  align-self: flex-start;
+}
+
+.floating-right {
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .advertisement-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .floating-left,
+  .floating-right {
+    align-self: center;
+  }
+}
+/* DeploymentProgress.css */
+@keyframes orb-float {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg); 
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translate(-15px, -15px) rotate(5deg); 
+        opacity: 0.7;
+    }
+}
+
+.animate-orb-float {
+    animation: orb-float 12s ease-in-out infinite;
+}
+
+.animate-orb-float-delayed {
+    animation: orb-float 12s ease-in-out infinite;
+    animation-delay: -6s;
+}
+
+.bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.terminal-window::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-window::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.terminal-window::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+}
+
+.terminal-window::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.5);
+}
+/* DeploymentProgress.css */
+
+.terminal {
+  background: #1e1e2f; /* Dark theme for terminal */
+  height: 300px;
+  border: 1px solid #333344;
+  border-radius: 12px;
+  padding: 20px;
+  max-height: 400px; /* Limits the height of the terminal */
+  overflow-y: auto; /* Allows scrolling for long logs */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font for terminal logs */
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Adds a subtle glow effect to the terminal border */
+.terminal:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00ffc3, #007bff);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+/* Individual log lines */
+.log-line {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+/* Success log styling */
+.log-level-success {
+  color: #00ff00;
+  background: rgba(0, 255, 0, 0.1); /* Transparent green background */
+}
+
+/* Error log styling */
+.log-level-error {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1); /* Transparent red background */
+}
+
+/* Info or general log styling */
+.log-level-info {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05); /* Subtle background for regular logs */
+}
+
+/* Highlight log on hover for better readability */
+.log-line:hover {
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+/* Scrollbar customization for terminal */
+.terminal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal::-webkit-scrollbar-thumb {
+  background: #00ffc3;
+  border-radius: 8px;
+}
+
+.terminal::-webkit-scrollbar-thumb:hover {
+  background: #007bff;
+}
+
+/* Add a glowing "LIVE" badge at the top-right corner of the terminal */
+.terminal-live-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4d4d;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 8px #ff4d4d;
+  }
+  to {
+    box-shadow: 0 0 15px #ff4d4d;
+  }
+}
+/* DeploymentProgress.css - Updates */
+
+/* Terminal Header Label */
+.terminal-header {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  padding: 5px 15px;
+  background: linear-gradient(135deg, #00ffc3, #007bff);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  animation: floatLabel 3s infinite alternate ease-in-out;
+}
+
+@keyframes floatLabel {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Advertisement Section */
+.advertisement-section {
+  position: relative;
+  margin: 50px 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+
+.advertisement-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s, opacity 0.3s;
+  background: linear-gradient(135deg, #292e3d, #1a1f2e);
+}
+
+.advertisement-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.ad-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #00ffc3;
+}
+
+.ad-title {
+  margin: 15px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #00ffc3;
+}
+
+.ad-description {
+  margin: 15px;
+  font-size: 1rem;
+  color: #d4d4d4;
+}
+
+.btn-signup {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-signup:hover {
+  background: #0056b3;
+}
+
+/* Floating Animation for Ads */
+.advertisement-card.floating-right {
+  animation: floatAdRight 6s infinite ease-in-out alternate;
+}
+
+.advertisement-card.floating-left {
+  animation: floatAdLeft 6s infinite ease-in-out alternate;
+}
+
+@keyframes floatAdRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(20px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes floatAdLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20px);
+    opacity: 0.8;
+  }
+}

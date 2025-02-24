@@ -1,0 +1,235 @@
+/* New Glowing Effects */
+.glowing-line {
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 192, 0, 0.8), transparent);
+  animation: glow-line 4s infinite;
+  filter: blur(1px);
+}
+@keyframes glow-line {
+  0% { opacity: 0; transform: translateX(-100%); }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(200%); }
+}
+/* Keep only essential animations */
+@keyframes moveLines {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, -20px); }
+}
+.glowing-headline {
+  text-shadow: 0 0 10px rgba(255, 192, 0, 0.5);
+}
+.tech-text {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(45deg, #ffc000, #ff6b00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: tech-glitch 3s infinite;
+}
+@keyframes tech-glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.animate-gradient-shift {
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+/* Enhance hover transitions */
+.group:hover {
+  transform: perspective(1000px) rotateX(2deg);
+}
+/* Smooth shadow transition */
+.group {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Holographic Effects */
+.holographic-card {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+.holographic-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 192, 0, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: hologram 6s infinite linear;
+}
+@keyframes hologram {
+  0% { transform: rotate(45deg) translateX(-50%); }
+  100% { transform: rotate(45deg) translateX(50%); }
+}
+/* Hero Section Enhancements */
+.hero-section {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(10, 15, 30, 0.98));
+  overflow: hidden;
+}
+/* Enhanced Glowing Effects */
+.glowing-headline {
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  animation: headline-pulse 3s infinite;
+}
+@keyframes headline-pulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { text-shadow: 0 0 40px rgba(59, 130, 246, 0.5); }
+}
+.tech-text {
+  background: linear-gradient(45deg, #3b82f6, #60a5fa, #3b82f6);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 8s linear infinite;
+}
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Modern Button Styling */
+.cyber-button {
+  position: relative;
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+  border: none;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  overflow: hidden;
+}
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: button-shine 3s infinite;
+}
+@keyframes button-shine {
+  0% { transform: rotate(45deg) translateX(-100%); }
+  100% { transform: rotate(45deg) translateX(100%); }
+}
+/* Enhanced Background Effects */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: grid-fade 4s infinite;
+}
+@keyframes grid-fade {
+  0%, 100% { opacity: 0.07; }
+  50% { opacity: 0.12; }
+}
+/* Floating Elements Animation */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float-delayed 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+/* Glowing Lines Enhancement */
+.glowing-line {
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(59, 130, 246, 0.5),
+    transparent
+  );
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+/* Circuit Node Enhancement */
+.circuit-node {
+  background: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+/* Text Animation for TypeAnimation */
+.type-animation-text {
+  position: relative;
+}
+.type-animation-text::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  height: 50%;
+  width: 2px;
+  background: #3b82f6;
+  transform: translateY(-50%);
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+/* Enhanced Neon Text */
+.neon-text {
+  text-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2),
+    0 0 30px rgba(59, 130, 246, 0.1);
+}
+html {
+  scroll-behavior: smooth;
+}
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: grid-fade 4s infinite;
+}
+@keyframes grid-fade {
+  0%, 100% { opacity: 0.07; }
+  50% { opacity: 0.12; }
+}

@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      },
+      "jsx": "react",
+      "moduleResolution": "node",
+      "target": "esnext",
+      "module": "esnext",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+      "src/**/*"  // Change this to point to your source folder, e.g., "src/**/*"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+ }
+  

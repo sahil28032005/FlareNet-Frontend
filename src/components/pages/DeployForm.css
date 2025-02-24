@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --primary: #4ade80;
+  --primary-hover: #22c55e;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --border: #3f3f46;
+  --input: #3f3f46;
+  --ring: #4ade8055;
+  --radius: 0.5rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+/* Form Elements */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a1a1aa'%3E%3Cpath d='M12 16l-6-6h12l-6 6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: #0a0a0a;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Custom Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Glass Morphism Effect */
+.glass {
+  background: rgba(9, 9, 11, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Validation States */
+.validation-success {
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.validation-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Framework Icons */
+.framework-icon {
+  filter: invert(98%) sepia(3%) saturate(464%) hue-rotate(185deg) brightness(115%) contrast(80%);
+  transition: all 0.2s ease;
+}
+
+.framework-icon:hover {
+  filter: invert(87%) sepia(21%) saturate(1733%) hue-rotate(81deg) brightness(97%) contrast(89%);
+}
+@keyframes orb-float {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg); 
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translate(-15px, -15px) rotate(5deg); 
+        opacity: 0.7;
+    }
+}
+
+.animate-orb-float {
+    animation: orb-float 12s ease-in-out infinite;
+}
+
+.animate-orb-float-delayed {
+    animation: orb-float 12s ease-in-out infinite;
+    animation-delay: -6s;
+}
+
+.bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+/* Add these styles at the beginning of your CSS file */
+.min-h-screen {
+  padding-top: 5rem; /* Adjust this value based on your navbar height */
+  min-height: calc(100vh - 4rem); /* Adjust 4rem based on your navbar height */
+}
+
+/* Form container positioning */
+.container {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Adjust the background elements positioning */
+.absolute.inset-0 {
+  top: 4rem; /* Match your navbar height */
+}
+
+/* Adjust vertical spacing for the form content */
+.py-12 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
