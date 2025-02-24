@@ -7,7 +7,6 @@ import { jwtDecode } from "jwt-decode";
 import { useUser } from '../../context/userContext';
 const LandingPage = () => {
   const { user, setUserData, removeUserData } = useUser();
-  console.log("user", user);
   // Check if the user is logged in
   useEffect(() => {
     const token = localStorage.getItem("authTokenLogin");

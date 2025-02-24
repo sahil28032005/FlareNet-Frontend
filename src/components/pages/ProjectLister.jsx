@@ -14,7 +14,6 @@ const ProjectLister = () => {
     // Fetch user's projects
     useEffect(() => {
         if (!user?.id) {
-            console.log("No user is logged in!");
             navigate("/login");
             return;
         }
