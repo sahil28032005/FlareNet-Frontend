@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-import "./projectLister.css";
+import "./ProjectLister.css";
 import { useUser } from "../../context/userContext";
 
 const ProjectLister = () => {
