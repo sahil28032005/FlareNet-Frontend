@@ -25,41 +25,38 @@ export function SpiderMan({ animationTrigger }) {
   };
   const playAnimation = async (animationName) => {
     if (!actions[animationMap[animationName]]) return;
-    
+
     setIsAnimating(true);
     Object.values(actions).forEach(action => action.stop());
-    
+
     const action = actions[animationMap[animationName]];
-    
+
     return new Promise((resolve) => {
       action
         .reset()
         .setLoop(THREE.LoopOnce)
         .fadeIn(0.3)
         .play();
-    // Listen for animation completion
-    action.clampWhenFinished = true;
-    const duration = action.getClip().duration * 1000;
-    
-    console.log(`🕷️ Playing: ${animationName}, Duration: ${duration}ms`);
-    
-    setTimeout(() => {
-      action.fadeOut(0.3);
-      resolve();
-    }, duration);
+      // Listen for animation completion
+      action.clampWhenFinished = true;
+      const duration = action.getClip().duration * 1000;
+      setTimeout(() => {
+        action.fadeOut(0.3);
+        resolve();
+      }, duration);
     });
   };
 
   const playAllAnimations = async () => {
     const animationList = Object.keys(animationMap);
-    
+
     for (const anim of animationList) {
       setCurrentAnimation(anim);
       await playAnimation(anim);
       // Shorter delay between animations
       await new Promise(resolve => setTimeout(resolve, 300));
     }
-    
+
     setIsAnimating(false);
     // Return to idle animation
     playAnimation('idle');

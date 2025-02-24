@@ -23,13 +23,11 @@ const ProjectsPage = () => {
     //handle import click
 
     const handleImport = async (repo) => {
-        if(!user?.id){
+        if (!user?.id) {
             console.error("no user is logged in to set ownerId.");
         }
 
         try {
-            ///api call to create prroject
-            console.log("arrived repo", repo);
             const response = await axios.post("http://localhost:5000/create-project", {
                 name: repo.name,
                 gitUrl: repo.html_url,
@@ -38,7 +36,6 @@ const ProjectsPage = () => {
             });
 
             if (response.status === 200) {
-                console.log("project created successfully");
 
                 //redirect to the project lister page
                 navigate("/projects");
@@ -260,7 +257,7 @@ const ProjectsPage = () => {
                 </h2>
 
                 {/* GitHub Authorization Button */}
-                <button 
+                <button
                     onClick={handleAuthorizationWithGithub}
                     className="mx-auto mb-12 flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-800/80 
                              border border-blue-500/20 text-gray-200 hover:border-blue-500/40 
@@ -313,7 +310,7 @@ const ProjectsPage = () => {
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {userRepos.slice(0, expanded ? userRepos.length : 4).map((repo, index) => (
-                                <Card 
+                                <Card
                                     key={repo.id}
                                     className="group backdrop-blur-md bg-slate-800/30 border border-blue-500/10 
                                              hover:border-blue-500/30 transition-all duration-500"
@@ -346,7 +343,7 @@ const ProjectsPage = () => {
                                 </Card>
                             ))}
                         </div>
-                        
+
                         {userRepos.length > 4 && (
                             <div className="text-center mt-8">
                                 <Button
