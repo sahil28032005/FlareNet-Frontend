@@ -12,6 +12,7 @@ import "./ProjectsPage.css";
 import { useUser } from '../../context/userContext';
 
 const ProjectsPage = () => {
+    const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
     const { user } = useUser(); // Get the user data from the context
     const [isLoading, setIsLoading] = useState(false);
     const [newProject, setNewProject] = useState({ name: "", gitUrl: "", description: "", ownerId: 1 });
@@ -28,7 +29,7 @@ const ProjectsPage = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:5000/create-project", {
+            const response = await axios.post(`${API_URL}/create-project`, {
                 name: repo.name,
                 gitUrl: repo.html_url,
                 description: repo.description || "No description provided",
@@ -163,11 +164,11 @@ const ProjectsPage = () => {
         if (accessToken) {
             const fetchUserInfo = async () => {
                 try {
-                    const userInfoResponse = await axios.get(`http://localhost:5000/api/github/user-info?accessToken=${accessToken}`);
+                    const userInfoResponse = await axios.get(`${API_URL}/api/github/user-info?accessToken=${accessToken}`);
                     if (userInfoResponse.data) {
                         setUserInfo(userInfoResponse.data);
                     }
-                    const userReposResponse = await axios.get(`http://localhost:5000/api/github/user-repos?accessToken=${accessToken}`);
+                    const userReposResponse = await axios.get(`${API_URL}/api/github/user-repos?accessToken=${accessToken}`);
                     if (userReposResponse.data) {
                         setUserRepos(userReposResponse.data);
                     }
@@ -183,7 +184,7 @@ const ProjectsPage = () => {
     useEffect(() => {
         const fetchAccessToken = async (code) => {
             try {
-                const response = await axios.post(`http://localhost:5000/api/github/token?code=${code}`);
+                const response = await axios.post(`${API_URL}/api/github/token?code=${code}`);
                 if (response.data.success) {
                     const token = response.data.accessToken;
                     localStorage.setItem('github_token', token); // Store token in localStorage
@@ -211,7 +212,7 @@ const ProjectsPage = () => {
         if (newProject.name && newProject.gitUrl && newProject.description) {
             try {
                 setIsLoading(true);
-                const response = await axios.post("http://localhost:5000/create-project", newProject);
+                const response = await axios.post("${API_URL}/create-project", newProject);
                 if (response.data.success) {
                     setProjects([...projects, newProject]);
                     setNewProject({ name: "", gitUrl: "", description: "", ownerId: newProject.ownerId });
@@ -231,7 +232,7 @@ const ProjectsPage = () => {
 
     const handleAuthorizationWithGithub = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/github/auth-url");
+            const response = await axios.get("${API_URL}/api/github/auth-url");
             if (response.data.success && response.data.authUrl) {
                 window.location.href = response.data.authUrl;
             } else {
