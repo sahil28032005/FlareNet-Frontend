@@ -17,11 +17,11 @@ jobs:
 
       - name: Create env file
         run: |
-          echo "VITE_API_BASE_URL=http://13.203.171.25:5000" > .env.production
+          echo "VITE_API_BASE_URL=https://13.203.171.25:5000" > .env.production
 
       - name: Build Project
         env:
-          VITE_API_BASE_URL: http://13.203.171.25:5000
+          VITE_API_BASE_URL: https://13.203.171.25:5000
         run: npm run build
 
       # Debug Step: Print Bucket Name
