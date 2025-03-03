@@ -10,6 +10,9 @@ import spiderIcon from '../../assets/spider.png';
 import './chat.css';
 
 export const ChatInterface = ({ triggerAnimation }) => {
+  // Add API base URL from environment variable
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+  
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const [userId, setUserId] = useState(null);
@@ -58,7 +61,7 @@ export const ChatInterface = ({ triggerAnimation }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/llm/chat', {
+      const response = await fetch(`${API_URL}/api/llm/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: inputMessage, userId })
@@ -67,7 +70,6 @@ export const ChatInterface = ({ triggerAnimation }) => {
       const data = await response.json();
       setMessages([...newMessages, { text: data.reply, isBot: true }]);
     } catch (error) {
-      console.error("❌ Error calling API:", error);
       setMessages([...newMessages, { text: "Oops! Something went wrong. 😵", isBot: true }]);
     }
 

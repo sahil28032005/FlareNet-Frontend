@@ -7,6 +7,7 @@ import "./ProjectLister.css";
 import { useUser } from "../../context/userContext";
 
 const ProjectLister = () => {
+    const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
     const [projects, setProjects] = useState([]);
     const navigate = useNavigate();
     const { user } = useUser();  // Access user from context
@@ -19,7 +20,7 @@ const ProjectLister = () => {
         }
         const fetchProjects = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/projects/${user.id}`);
+                const response = await axios.get(`${API_URL}/projects/${user.id}`);
                 if (response.data.success) {
                     setProjects(response.data.data);
                 }

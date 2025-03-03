@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import { FiCheckCircle, FiXCircle, FiTerminal, FiGitBranch } from "react-icons/fi";
 
 const DeployForm = () => {
+    const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
     const navigate = useNavigate();
     let { id } = useParams();
     const [gitUrl, setGitUrl] = useState("");
@@ -66,7 +67,7 @@ const DeployForm = () => {
                 throw new Error('GitHub token not found in localStorage');
             }
 
-            const response = await axios.get("http://localhost:5000/api/validdeployment/validate-react", {
+            const response = await axios.get(`${API_URL}/api/validdeployment/validate-react`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${githubToken}`
@@ -102,7 +103,7 @@ const DeployForm = () => {
 
         setIsSubmitting(true);
         try {
-            const response = await fetch("http://localhost:5000/deploy", {
+            const response = await fetch(`${API_URL}/deploy`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -134,7 +135,7 @@ const DeployForm = () => {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/project/${id}`);
+                const response = await fetch(`${API_URL}/api/project/${id}`);
                 const project = await response.json();
                 if (response.ok) {
                     setGitUrl(project.gitUrl || "");

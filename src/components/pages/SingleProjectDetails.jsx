@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/table"
 
 const SingleProjectDetails = () => {
+    const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
     const { id } = useParams();
     const navigate = navigate();
     const [project, setProject] = useState(null);
@@ -24,7 +25,7 @@ const SingleProjectDetails = () => {
     useEffect(() => {
         const fetchProjectDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/project/${id}`);
+                const response = await axios.get(`${API_URL}/api/project/${id}`);
                 if (response.data) {
                     setProject(response.data);
                 } else {
@@ -40,7 +41,7 @@ const SingleProjectDetails = () => {
 
         const fetchDeployments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/deployments/${id}`);
+                const response = await axios.get(`${API_URL}/deployments/${id}`);
                 if (response.data.success) {
                     setDeployments(response.data.deployments);
                 }

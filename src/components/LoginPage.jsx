@@ -18,16 +18,23 @@ const LoginPage = () => {
   const [message, setMessage] = useState(null);
   const { setUserData } = useUser();
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api/auth";
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+  console.log("API URL:", API_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin ? "login" : "register";
-    const url = `${API_BASE_URL}/${endpoint}`;
+    // Update endpoint to match backend route structure
+    const url = `${API_URL}/api/auth/${endpoint}`;
     const payload = isLogin ? { email, password } : { email, password, name };
 
     try {
-      const response = await axios.post(url, payload);
+      const response = await axios.post(url, payload, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       setMessage({ type: "success", text: response.data.message });
 
       if (isLogin && response.status === 200) {
@@ -51,17 +58,18 @@ const LoginPage = () => {
         navigate("/");
       }
     } catch (error) {
+      console.error('Login error:', error);
       setMessage({
         type: "error",
-        text: error.response?.data?.error || "Something went wrong",
+        text: error.response?.data?.error || "Server connection error. Please try again.",
       });
     }
   };
 
   const handleOAuth = (provider) => {
-    window.location.href = `${API_BASE_URL}/oauth/${provider}`;
+    // Update OAuth endpoint
+    window.location.href = `${API_URL}/api/auth/oauth/${provider}`;
   };
-
   return (
     <div className="relative flex min-h-screen flex-col lg:flex-row bg-[#030712] overflow-hidden">
       {/* Background Effects */}
