@@ -1,20 +1,37 @@
 /* Modern Chat Interface Styling */
 /* Chat Icon Animation */
 @keyframes float {
-  0%, 100% { 
+
+  0%,
+  100% {
     transform: translateY(0);
     box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
   }
-  50% { 
+
+  50% {
     transform: translateY(-8px);
     box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2);
   }
 }
 
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-wave {
+  animation: wave 2s linear infinite;
+}
+
 /* Chat Icon Glow */
 .chat-icon-button {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  box-shadow: 
+  box-shadow:
     0 0 20px 2px rgba(37, 99, 235, 0.3),
     0 0 0 2px rgba(37, 99, 235, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -23,7 +40,7 @@
 
 .chat-icon-button:hover {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
-  box-shadow: 
+  box-shadow:
     0 0 30px 4px rgba(37, 99, 235, 0.4),
     0 0 0 2px rgba(37, 99, 235, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
@@ -36,23 +53,40 @@
 
 /* Add this to your existing animations */
 @keyframes typing {
-  0%, 100% { transform: scale(0.8) translateY(0); }
-  50% { transform: scale(1.2) translateY(-2px); }
+
+  0%,
+  100% {
+    transform: scale(0.8) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.2) translateY(-2px);
+  }
 }
+
 .pulse-border {
   animation: pulseBorder 2s infinite;
 }
 
 @keyframes pulseBorder {
-  0% { border-color: rgba(59, 130, 246, 0.1); }
-  50% { border-color: rgba(59, 130, 246, 0.3); }
-  100% { border-color: rgba(59, 130, 246, 0.1); }
+  0% {
+    border-color: rgba(59, 130, 246, 0.1);
+  }
+
+  50% {
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  100% {
+    border-color: rgba(59, 130, 246, 0.1);
+  }
 }
 
 .glass-morphism {
   background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(12px);
 }
+
 .typing-dot {
   @apply h-2.5 w-2.5 bg-indigo-400 rounded-full;
   animation: typing 1.2s ease-in-out infinite;
@@ -70,16 +104,14 @@
 }
 
 .chat-message-bot {
-  @apply relative before:absolute before:-left-3 before:top-0 before:h-5 before:w-5 
-         before:rounded-bl-2xl before:bg-indigo-900/40;
+  @apply relative before:absolute before:-left-3 before:top-0 before:h-5 before:w-5 before:rounded-bl-2xl before:bg-indigo-900/40;
   backdrop-filter: blur(12px);
   box-shadow: 0 4px 15px -3px rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(129, 140, 248, 0.1);
 }
 
 .chat-message-user {
-  @apply relative after:absolute after:-right-3 after:top-0 after:h-5 after:w-5 
-         after:rounded-br-2xl after:bg-gradient-to-br after:from-violet-500 after:to-purple-600;
+  @apply relative after:absolute after:-right-3 after:top-0 after:h-5 after:w-5 after:rounded-br-2xl after:bg-gradient-to-br after:from-violet-500 after:to-purple-600;
   backdrop-filter: blur(12px);
   box-shadow: 0 4px 15px -3px rgba(139, 92, 246, 0.15);
   border: 1px solid rgba(139, 92, 246, 0.1);
@@ -91,6 +123,7 @@
     opacity: 0;
     transform: translateY(20px) scale(0.95) rotate(-1deg);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1) rotate(0);
@@ -106,7 +139,7 @@
   background: linear-gradient(165deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.85));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(99, 102, 241, 0.1);
-  box-shadow: 
+  box-shadow:
     0 8px 32px -4px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
@@ -128,8 +161,7 @@
 }
 
 .chat-message-bot {
-  @apply relative before:absolute before:-left-3 before:top-0 before:h-5 before:w-5 
-         before:rounded-bl-2xl before:bg-slate-800/80;
+  @apply relative before:absolute before:-left-3 before:top-0 before:h-5 before:w-5 before:rounded-bl-2xl before:bg-slate-800/80;
   backdrop-filter: blur(12px);
   background: linear-gradient(to right, rgba(51, 65, 85, 0.3), rgba(71, 85, 105, 0.2));
   box-shadow: 0 4px 15px -3px rgba(51, 65, 85, 0.2);
@@ -137,17 +169,24 @@
 }
 
 .chat-message-user {
-  @apply relative after:absolute after:-right-3 after:top-0 after:h-5 after:w-5 
-         after:rounded-br-2xl after:bg-gradient-to-br after:from-blue-600 after:to-indigo-700;
+  @apply relative after:absolute after:-right-3 after:top-0 after:h-5 after:w-5 after:rounded-br-2xl after:bg-gradient-to-br after:from-blue-600 after:to-indigo-700;
   backdrop-filter: blur(12px);
   background: linear-gradient(to right, rgba(37, 99, 235, 0.9), rgba(79, 70, 229, 0.9));
   box-shadow: 0 4px 15px -3px rgba(37, 99, 235, 0.2);
   border: 1px solid rgba(37, 99, 235, 0.2);
 }
+
 /* Enhanced animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
 }
 
 .new-message-animation {
@@ -155,8 +194,15 @@
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.1); }
-  50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.2); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+  }
 }
 
 .thinking-animation {
@@ -168,18 +214,21 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(239, 68, 68, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(239, 68, 68, 0.2),
+      transparent);
   animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .typing-dot {
@@ -191,27 +240,52 @@
   opacity: 0.5;
 }
 
-.typing-dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes typingDot {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-  30% { transform: translateY(-4px); opacity: 1; }
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
 }
+
 .pulse-border {
   animation: pulseBorder 2s infinite;
 }
 
 @keyframes pulseBorder {
-  0% { border-color: rgba(59, 130, 246, 0.1); }
-  50% { border-color: rgba(59, 130, 246, 0.3); }
-  100% { border-color: rgba(59, 130, 246, 0.1); }
+  0% {
+    border-color: rgba(59, 130, 246, 0.1);
+  }
+
+  50% {
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  100% {
+    border-color: rgba(59, 130, 246, 0.1);
+  }
 }
 
 .glass-morphism {
   background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(12px);
 }
+
 .typing-dot {
   @apply h-2.5 w-2.5 bg-indigo-400 rounded-full;
   animation: typing 1.2s ease-in-out infinite;
@@ -229,16 +303,14 @@
 }
 
 .chat-message-bot {
-  @apply relative before:absolute before:-left-3 before:top-0 before:h-5 before:w-5 
-         before:rounded-bl-2xl before:bg-indigo-900/40;
+  @apply relative before:absolute before:-left-3 before:top-0 before:h-5 before:w-5 before:rounded-bl-2xl before:bg-indigo-900/40;
   backdrop-filter: blur(12px);
   box-shadow: 0 4px 15px -3px rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(129, 140, 248, 0.1);
 }
 
 .chat-message-user {
-  @apply relative after:absolute after:-right-3 after:top-0 after:h-5 after:w-5 
-         after:rounded-br-2xl after:bg-gradient-to-br after:from-violet-500 after:to-purple-600;
+  @apply relative after:absolute after:-right-3 after:top-0 after:h-5 after:w-5 after:rounded-br-2xl after:bg-gradient-to-br after:from-violet-500 after:to-purple-600;
   backdrop-filter: blur(12px);
   box-shadow: 0 4px 15px -3px rgba(139, 92, 246, 0.15);
   border: 1px solid rgba(139, 92, 246, 0.1);
@@ -246,8 +318,15 @@
 
 /* Enhanced animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
 }
 
 .new-message-animation {
@@ -255,8 +334,15 @@
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.1); }
-  50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.2); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+  }
 }
 
 .thinking-animation {
@@ -268,18 +354,21 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(239, 68, 68, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(239, 68, 68, 0.2),
+      transparent);
   animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .typing-dot {
@@ -291,10 +380,25 @@
   opacity: 0.5;
 }
 
-.typing-dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes typingDot {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-  30% { transform: translateY(-4px); opacity: 1; }
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
 }
