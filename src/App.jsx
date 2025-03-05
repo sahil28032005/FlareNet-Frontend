@@ -22,25 +22,16 @@ function App() {
         {/* plcae navbar here as common shared components */}
         <NavBar />
         <Routes>
-          {/* public routes */}
-          <Route path="/" element={<LandingPage />} />
-          {/* Define Route for Login page */}
-          <Route path="/login" element={<LoginPage />} />
-          {/* Define Route for LandingPage */}
-
-          {/* private riutes */}
-          {/* Define Route for Service */}
-          <Route path="/new" element={<ProtectedRoute><Service /></ProtectedRoute>} />
-
-          {/* Define Route for progress page */}
-          <Route path="/progress/:id" element={<ProtectedRoute><DeploymentProgress /></ProtectedRoute>} />
-
-          {/* Define Route for actual hosting form */}
-          <Route path="/service/:id" element={<ProtectedRoute><DeployForm /></ProtectedRoute>} />
-
-          {/* Define Route for users pages */}
-          {/* <Route path="/projects" element={<ProtectedRoute><ProjectLister /></ProtectedRoute>} /> */}
-          <Route path="/projects" element={<ProjectLister />} />
+            {/* public routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            {/* private routes */}
+            <Route path="/new" element={<ProtectedRoute><Service /></ProtectedRoute>} />
+            <Route path="/new/callback" element={<ProtectedRoute><Service /></ProtectedRoute>} /> {/* Add GitHub callback route */}
+            
+            <Route path="/progress/:id" element={<ProtectedRoute><DeploymentProgress /></ProtectedRoute>} />
+            <Route path="/service/:id" element={<ProtectedRoute><DeployForm /></ProtectedRoute>} />
+            <Route path="/projects" element={<ProjectLister />} />
         </Routes>
         {/* Conditionally render Footer */}
         {location.pathname !== '/login' && <Footer />}
