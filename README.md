@@ -1,8 +1,69 @@
-# React + Vite
+# Flarenet - AI-Powered Web Deployment Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="./assets/fNet1.png" alt="Flarenet Dashboard" width="800"/>
+</p>
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Flarenet is a cutting-edge web deployment platform that leverages AI-driven workflows to streamline and automate the deployment process. Built with a robust architecture incorporating Kafka, Redis, and advanced ML models, Flarenet provides an intelligent, scalable solution for modern web deployment needs.
+
+<p align="center">
+  <img src="./assets/fNet2.png" alt="Flarenet Features" width="800"/>
+</p>
+
+## Key Features
+
+- 🤖 AI-Assisted Deployment Workflows
+- 🚀 Automated Infrastructure Management
+- 📊 Real-time Monitoring & Analytics
+- 🔄 High-Throughput Message Processing
+- 🛡️ Enterprise-Grade Security
+- 🎯 Intelligent Resource Optimization
+
+## Technology Stack
+
+### Core Infrastructure
+- **Message Broker:** Apache Kafka (Self-hosted)
+- **Caching Layer:** Redis, ElastiCache
+- **Database:** RDS, ClickHouse
+- **Load Balancer:** NGINX
+- **Queue Management:** Bull MQ
+
+### AI/ML Components
+- **LLM Integration:** LangChain
+- **Model Deployment:** Groq
+- **Custom ML Models:** Self-hosted inference
+
+## Architecture
+
+### Kafka Event Processing Architecture
+<p align="center">
+  <img src="./assets/kafka-architecture.png" alt="Kafka Architecture" width="600"/>
+</p>
+
+### Key Components
+1. **Event Producers**
+   - Deployment Triggers
+   - System Monitors
+   - User Actions
+
+2. **Event Processors**
+   - Real-time Analytics
+   - Log Aggregation
+   - Metric Collection
+
+3. **Event Consumers**
+   - Deployment Engines
+   - Notification Services
+   - Monitoring Systems
+
+## Getting Started
+
+### Prerequisites
+```bash
+node >= 16.x
+npm >= 8.x
+Redis >= 6.x
+Kafka >= 3.x
+```

@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Flarenet - Proprietary Software
+ * Copyright (c) 2024 Flarenet
+ * All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ */
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import LandingPage from './components/pages/LandingPage';

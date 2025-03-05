@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -58,3 +59,4 @@
     "vite": "^5.4.10"
   }
 }
+
