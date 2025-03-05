@@ -232,7 +232,7 @@ const ProjectsPage = () => {
 
     const handleAuthorizationWithGithub = async () => {
         try {
-            const response = await axios.get("${API_URL}/api/github/auth-url");
+            const response = await axios.get(`${API_URL}/api/github/auth-url`);
             if (response.data.success && response.data.authUrl) {
                 window.location.href = response.data.authUrl;
             } else {
