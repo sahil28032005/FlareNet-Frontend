@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import LandingPage from './components/pages/LandingPage';
 import Service from './components/pages/Service';
@@ -11,9 +11,10 @@ import Footer from './components/Footer';
 import { useUser } from './context/userContext';
 import ProtectedRoute from './components/ProctedRoutes/ProtectedRoute';
 
-function App() {
+// Create a separate component for the main app content
+function AppContent() {
   const { user, setUserData } = useUser();
-  const location = useLocation(); // Move this inside the Router
+  const location = useLocation(); // Now this is correct
 
   return (
     <>
@@ -50,6 +51,15 @@ function App() {
       
       {location.pathname !== '/login' && <Footer />}
     </>
+  );
+}
+
+// Wrap the entire app with Router
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
