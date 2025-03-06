@@ -1,64 +1,113 @@
 import { motion } from "framer-motion";
 import { StreamingText } from "../chatAssistance/StreamingText";
+import React, { useState, useEffect } from "react";
 
-export const AIAnalysis = ({ logs }) => {
+export const AIAnalysis = ({ analysisData = [] }) => {
+  const [displayedAnalysis, setDisplayedAnalysis] = useState([]);
+  const [isStreaming, setIsStreaming] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
+
+  useEffect(() => {
+    if (analysisData.length > displayedAnalysis.length) {
+      setCurrentItem(analysisData[displayedAnalysis.length]);
+      setIsStreaming(true);
+    }
+  }, [analysisData, displayedAnalysis]);
+
+  const handleStreamComplete = () => {
+    if (currentItem) {
+      setDisplayedAnalysis(prev => [...prev, currentItem]);
+      setIsStreaming(false);
+      setCurrentItem(null);
+    }
+  };
+
+  const getClassificationColor = (classification) => {
+    switch (classification) {
+      case "ERROR":
+        return "text-red-400 bg-red-500/10 border-red-500/30";
+      case "WARNING":
+        return "text-yellow-400 bg-yellow-500/10 border-yellow-500/30";
+      case "INFO":
+        return "text-blue-400 bg-blue-500/10 border-blue-500/30";
+      case "SUCCESS":
+      case "UPLOAD_SUCCESS":
+        return "text-green-400 bg-green-500/10 border-green-500/30";
+      default:
+        return "text-gray-400 bg-gray-500/10 border-gray-500/30";
+    }
+  };
+
   return (
-    <div className="rounded-2xl backdrop-blur-xl bg-slate-800/30 border border-blue-500/10 hover:border-blue-500/30 transition-all duration-500 p-6">
-      <div className="flex items-center gap-4 mb-6">
-        <div className="relative">
-          <motion.div
-            className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <div className="absolute inset-0 backdrop-blur-sm rounded-full" />
-        </div>
-        <div>
-          <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            AI Analysis
-          </h3>
-          <p className="text-sm text-blue-300/60">Real-time deployment insights</p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div className="p-4 rounded-xl bg-slate-900/50 border border-blue-500/10">
-          <h4 className="text-sm font-medium text-blue-300/80 mb-2">Performance Metrics</h4>
-          <motion.div
-            className="h-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 mb-2"
-            initial={{ width: 0 }}
-            animate={{ width: "80%" }}
-            transition={{ duration: 1 }}
-          />
-          <p className="text-xs text-blue-300/60">Build optimization: 80%</p>
-        </div>
-        <div className="p-4 rounded-xl bg-slate-900/50 border border-blue-500/10">
-          <h4 className="text-sm font-medium text-blue-300/80 mb-2">Security Check</h4>
-          <motion.div
-            className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 mb-2"
-            initial={{ width: 0 }}
-            animate={{ width: "95%" }}
-            transition={{ duration: 1 }}
-          />
-          <p className="text-xs text-blue-300/60">Vulnerability scan: 95% safe</p>
+    <div className="rounded-2xl backdrop-blur-xl bg-slate-800/30 border border-blue-500/10 
+                    hover:border-blue-500/30 transition-all duration-500 p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 
+                       bg-clip-text text-transparent">AI Analysis</h3>
+        <div className="flex items-center gap-2">
+          <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 
+                         border border-purple-500/30 text-sm">INSIGHTS</span>
+          {isStreaming && (
+            <motion.div
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="flex items-center gap-1"
+            >
+              <div className="w-2 h-2 rounded-full bg-blue-400" />
+              <div className="w-2 h-2 rounded-full bg-blue-400" />
+              <div className="w-2 h-2 rounded-full bg-blue-400" />
+            </motion.div>
+          )}
         </div>
       </div>
+      
+      <div className="h-[400px] overflow-y-auto rounded-xl bg-slate-900/50 p-4 space-y-3">
+        {displayedAnalysis.map((item, index) => (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            key={item.log_event_id || index}
+            className={`p-4 rounded-lg border ${getClassificationColor(item.classification)}`}
+          >
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-semibold">{item.classification}</span>
+              <span className="text-xs opacity-70">{new Date(item.timestamp).toLocaleString()}</span>
+            </div>
+            <p className="text-sm">{item.reasoning}</p>
+          </motion.div>
+        ))}
+        
+        {isStreaming && currentItem && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`p-4 rounded-lg border ${getClassificationColor(currentItem.classification)}`}
+          >
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-semibold">{currentItem.classification}</span>
+              <span className="text-xs opacity-70">
+                {new Date(currentItem.timestamp).toLocaleString()}
+              </span>
+            </div>
+            <p className="text-sm">
+              <StreamingText text={currentItem.reasoning} onComplete={handleStreamComplete} />
+            </p>
+          </motion.div>
+        )}
 
-      <div className="rounded-xl bg-slate-900/50 border border-blue-500/10 p-4">
-        <div className="flex items-center justify-between mb-4">
-          <h4 className="text-sm font-medium text-blue-300/80">AI Insights</h4>
-          <span className="px-2 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs">
-            Live Analysis
-          </span>
-        </div>
-        <div className="space-y-3">
-          <StreamingText text="Analyzing deployment patterns and optimizing resource allocation..." />
-          <div className="h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-          <StreamingText text="Build process completed successfully. No critical issues detected." />
-        </div>
+        {!isStreaming && displayedAnalysis.length === 0 && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center h-full text-gray-400"
+          >
+            <svg className="w-12 h-12 mb-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            <p className="text-center">AI is analyzing your deployment logs...</p>
+          </motion.div>
+        )}
       </div>
     </div>
   );
