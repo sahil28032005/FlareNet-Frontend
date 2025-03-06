@@ -6,6 +6,10 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import axios from "axios";
 import { AIAnalysis } from "../deployment/AIAnalysis";
 import { LogTerminal } from "../deployment/LogTerminal";
+import { Canvas } from "@react-three/fiber";
+import { SpiderMan } from "../chatAssistance/SpiderMan";
+import { ChatInterface } from "../chatAssistance/ChaatInterface";
+import { Environment } from "@react-three/drei";
 
 const DeploymentProgress = () => {
   const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
@@ -15,6 +19,8 @@ const DeploymentProgress = () => {
   const [isDeploying, setIsDeploying] = useState(true);
   const [progress, setProgress] = useState(0);
   const [deploymentStats, setDeploymentStats] = useState({ success: 70, failure: 30, total: 100 });
+  const [aiAnalysisData, setAiAnalysisData] = useState([]);
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -90,9 +96,27 @@ const DeploymentProgress = () => {
       }
     };
 
-    const interval = setInterval(fetchLogs, 2000);
-    return () => clearInterval(interval);
+    //fetch llm logs
+    const fetchAiAnalysis = async () => {
+      try {
+        const response = await axios.get(`https://api.dataflarenet.com/api/ai-analysis/${id}`);
+        if (response.data.success) {
+          setAiAnalysisData(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching AI analysis:", error.message);
+      }
+    };
+
+    const logsInterval = setInterval(fetchLogs, 2000);
+    const aiAnalysisInterval = setInterval(fetchAiAnalysis, 3000); // Poll AI analysis every 5 seconds
+
+    return () => {
+      clearInterval(logsInterval);
+      clearInterval(aiAnalysisInterval);
+    };
   }, [id]);
+
 
 
   const handleCancel = () => {
@@ -101,6 +125,38 @@ const DeploymentProgress = () => {
   };
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden pt-20">
+    
+     {/* Spider-Man 3D Scene */}
+     <div style={{
+        position: 'fixed',
+        top: '100px',
+        right: '100px',
+        width: '600px',
+        height: '400px',
+        zIndex: 1000,
+        pointerEvents: 'none',
+        overflow: 'hidden',
+      }}>
+        <Canvas
+          style={{ background: 'transparent' }}
+          camera={{
+            position: [0, 1.5, 3],
+            fov: 45,
+            near: 0.1,
+            far: 1000
+          }}
+        >
+          <ambientLight intensity={1.2} />
+          <directionalLight position={[3, 5, 2]} intensity={1.5} />
+          <SpiderMan animationTrigger="all" />
+          <Environment preset="sunset" />
+        </Canvas>
+      </div>
+
+      {/* Chat Interface */}
+      <ChatInterface />
+    
+    
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.07]" />
@@ -148,7 +204,7 @@ const DeploymentProgress = () => {
           ))}
         </div>
 
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <div className="rounded-2xl backdrop-blur-xl bg-slate-800/30 border border-blue-500/10 
                               hover:border-blue-500/30 transition-all duration-500 p-6">
             <div className="flex items-center justify-between mb-4">
@@ -169,7 +225,7 @@ const DeploymentProgress = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mb-8">
           <div className="h-2 rounded-full bg-slate-800/50 overflow-hidden">
@@ -178,11 +234,12 @@ const DeploymentProgress = () => {
           </div>
         </div>
 
-        {/* //logs anf ai Analysis */}
+        {/* logs and ai Analysis */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <LogTerminal logs={logs} />
-          <AIAnalysis logs={logs} />
+          <AIAnalysis analysisData={aiAnalysisData} />
         </div>
+
 
         <div className="flex flex-wrap gap-4 justify-center mb-12">
           {isDeploying ? (
