@@ -1,80 +1,125 @@
 /* General Styles (reuse from ProjectLister) */
 .project-details-page {
-    background: #000000;
-    color: #f0f0f0;
-    min-height: 100vh;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #f8f9fa;
 }
 
 .page-header {
+    margin-bottom: 2rem;
     text-align: center;
-    margin-bottom: 30px;
 }
 
 .page-title {
-    /* ... (same as ProjectLister) */
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .page-subtitle {
-    /* ... (same as ProjectLister) */
+    font-size: 1.2rem;
+    color: #94a3b8;
 }
 
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
 
+.code-editor-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.deploy-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
 /* Project Details Section */
 .project-details {
-    background: #1a1a1a;
-    border: 1px solid #2e2e2e;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(255, 221, 0, 0.4);
-    margin-bottom: 20px; /* Add margin */
-    width: 100%;
-    max-width: 600px; /* Adjust max-width as needed */
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 0.75rem;
 }
 
 .detail-label {
     font-weight: 600;
-    color: #ffdd00;
-    margin-bottom: 5px;
+    color: #94a3b8;
 }
 
 .detail-value {
-    margin-bottom: 15px;
+    color: #e2e8f0;
 }
 
-.link {  /* Style the link */
-    color: #fbb034;
-    text-decoration: none; /* Remove underline */
+.link {
+    color: #60a5fa;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-
+.link:hover {
+    text-decoration: underline;
+}
 
 /* Deployments Table Styles */
-
-.deployments-table-wrapper {  /* Added a wrapper for better control */
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
-    width: 100%;
-    max-width: 800px; /* Adjust as needed */
-
+.deployments-table-wrapper {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    overflow-x: auto;
 }
 
-.deployments-table {
-    width: 100%;
-    border-collapse: collapse; /* Improve table styling */
+.status-success {
+    color: #4ade80;
 }
 
-
-.deployments-table th,
-.deployments-table td {
-    padding: 10px;
-    border: 1px solid #2e2e2e;
-    text-align: left;
+.status-failed {
+    color: #f87171;
 }
 
-/* Add hover effects or other styling as desired */
+.status-pending {
+    color: #fbbf24;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    color: #94a3b8;
+}
+
+.loader {
+    border: 4px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #3b82f6;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 

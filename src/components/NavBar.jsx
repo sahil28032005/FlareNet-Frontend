@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContext";
-import { FaUserCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaBars, FaTimes } from "react-icons/fa";
+import { FaUserCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaBars, FaTimes, FaCode } from "react-icons/fa";
 import { FiHome, FiFolder, FiInfo, FiMail } from "react-icons/fi";
 
 const NavBar = () => {
@@ -43,6 +43,7 @@ const NavBar = () => {
               {[
                 { name: "Home", icon: FiHome, path: "/" },
                 { name: "My Projects", icon: FiFolder, path: "/projects" },
+                { name: "Code Editor", icon: FaCode, path: "/editor/123" },
                 { name: "About Us", icon: FiInfo, path: "/about" },
                 { name: "Contact Us", icon: FiMail, path: "/contact" }
               ].map(({ name, icon: Icon, path }) => (
@@ -106,6 +107,7 @@ const NavBar = () => {
               {[
                 { name: "Home", icon: FiHome, path: "/" },
                 { name: "My Projects", icon: FiFolder, path: "/projects" },
+                { name: "Code Editor", icon: FaCode, path: "/editor/123" },
                 { name: "About Us", icon: FiInfo, path: "/about" },
                 { name: "Contact Us", icon: FiMail, path: "/contact" }
               ].map(({ name, icon: Icon, path }) => (
