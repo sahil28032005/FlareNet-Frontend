@@ -14,6 +14,7 @@ import DeploymentProgress from './components/pages/DeploymentProgress';
 import DeployForm from './components/pages/DeployForm';
 import LoginPage from './components/LoginPage';
 import ProjectLister from './components/pages/ProjectLister';
+import CodeEditorPage from './components/pages/CodeEditorPage';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { useUser } from './context/userContext';
@@ -55,9 +56,14 @@ function AppContent() {
           </ProtectedRoute>
         } />
         <Route path="/projects" element={<ProjectLister />} />
+        <Route path="/editor/:projectId" element={
+          // <ProtectedRoute>
+            <CodeEditorPage />
+          // </ProtectedRoute>
+        } />
       </Routes>
       
-      {location.pathname !== '/login' && <Footer />}
+      {location.pathname !== '/login' && location.pathname !== '/editor/:projectId' && <Footer />}
     </>
   );
 }
